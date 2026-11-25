@@ -1,0 +1,32 @@
+/* v0.9 — Velt Pay, separate from the personal pass wallet */
+.bottomnav { grid-template-columns:repeat(5,minmax(0,1fr)); }
+.nav-indicator { width:calc((100% - 24px) / 5); }
+.bottomnav small { font-size:clamp(9px,2.6vw,10.5px); }
+.pay-page { display:grid; gap:12px; }
+.pay-hero { position:relative; overflow:hidden; text-align:center; padding:24px 12px 27px; border-radius:28px; border:1px solid var(--line); background:radial-gradient(ellipse at 50% 10%,#8884,transparent 70%),var(--card); }
+.pay-orb { width:66px;height:66px;margin:0 auto 14px;display:grid;place-items:center;border-radius:50%;background:linear-gradient(135deg,#fff4,#7772);border:1px solid #8885;box-shadow:inset 0 1px 1px #fff7,0 8px 26px #0002; }
+.pay-orb svg { width:30px;height:30px; }
+.pay-kicker { color:var(--muted); font-size:10px;font-weight:650;letter-spacing:.09em; }
+.pay-hero h1 { margin:8px 0;font-size:clamp(30px,8vw,42px);line-height:1.04;letter-spacing:-.045em;font-weight:650; }
+.pay-hero p,.pay-card p { font-size:13px;line-height:1.5;color:var(--muted); }
+.pay-card { min-width:0;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:22px;box-shadow:var(--shadow-sm); }
+.pay-card-head { display:flex;align-items:center;justify-content:space-between;gap:8px; }
+.pay-card-head h2 { margin:5px 0;font-size:18px;overflow-wrap:anywhere; }
+.pay-status { flex-shrink:0;padding:6px 9px;border-radius:999px;background:var(--surface);font-size:11px;color:var(--muted); }
+.pay-address { display:block;overflow-wrap:anywhere;font-size:12px;line-height:1.6;padding:12px;border-radius:12px;background:var(--surface);margin:12px 0;user-select:all; }
+.pay-form { display:grid;gap:12px; }
+.pay-card button:disabled,.pay-form input:disabled { opacity:.5;cursor:not-allowed; }
+.pay-error { color:var(--muted); }
+.pay-preview { color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:25px;padding:20px;width:min(420px,calc(100% - 24px));max-height:90dvh; }
+.pay-preview::backdrop { background:#0008;backdrop-filter:blur(5px); }
+.pay-preview h2 { font-size:20px; margin:0 0 14px; }
+.pay-preview-text { white-space:pre-wrap;overflow-wrap:anywhere;line-height:1.6;font-size:13px;padding:13px;background:var(--surface);border-radius:14px; }
+.pay-preview .primary { margin-top:14px; }
+
+/* v0.9.1 — asset balances and external-wallet transfers */
+.asset-row{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);min-width:0}
+.asset-row>div{flex:1;min-width:0}.asset-row b,.asset-row small{display:block}.asset-row small{font-size:11px;color:var(--muted);margin-top:3px}.asset-row strong{font-size:15px;max-width:47%;overflow-wrap:anywhere;text-align:right;font-variant-numeric:tabular-nums}
+.asset-symbol{width:42px;height:42px;flex:0 0 42px;display:grid;place-items:center;border-radius:50%;background:var(--surface);border:1px solid var(--line);font-weight:700;font-size:13px}.asset-row:nth-child(2) .asset-symbol{font-size:23px}
+.pay-refresh{width:auto!important;padding:8px 12px!important;margin:0!important;font-size:12px;min-height:36px}.balance-note{font-size:11px!important;color:var(--muted);margin:10px 0 14px}.pay-quick{align-items:stretch}.pay-quick button{margin:0!important;min-height:46px;display:flex;align-items:center;justify-content:center;gap:6px}
+.pay-sheet{margin:auto auto max(10px,env(safe-area-inset-bottom));max-height:calc(100dvh - 24px);overflow:auto;border-radius:26px;animation:sheetUp .28s cubic-bezier(.2,.8,.2,1)}.pay-sheet .pay-form{margin-top:16px}.pay-sheet .pay-error:empty{display:none}.pay-sheet .secondary{width:100%;margin-top:10px}.receive-qr{display:grid;place-items:center;background:white;border-radius:18px;width:fit-content;max-width:100%;margin:18px auto;padding:8px;color:#111}.receive-qr canvas{max-width:100%;height:auto!important}.send-amount{font-size:clamp(30px,8vw,42px);font-weight:650;letter-spacing:-.04em;overflow-wrap:anywhere;margin:15px 0 22px}.send-amount small{font-size:18px;color:var(--muted)}
+@media(prefers-reduced-motion:reduce){.pay-sheet{animation:none!important}}
