@@ -71,3 +71,25 @@
 /* Search and header controls: visual depth without per-control backdrop sampling. */
 .clear-search {background:var(--card);border:1px solid var(--line)}
 .field-label {letter-spacing:.01em}
+
+/* Mobile WebView: constrain intrinsic date/input sizes and prevent focus zoom. */
+#screen, .sheet-page, .sheet-panel, .card-form, .pay-form, .subpage {min-width:0;max-width:100%}
+.sheet-panel {flex:1 1 100%}
+.field input[type=date] {display:block;width:100%;min-width:0;max-width:100%;-webkit-appearance:none;appearance:none;text-align:left;line-height:1.4}
+.field input[type=date]::-webkit-date-and-time-value {text-align:left;min-height:1.4em;min-width:0}
+.file-name {min-width:0;flex:1 1 100px}
+.form-actions {position:static;background:none}
+:root[data-theme='dark'] .form-actions {background:none}
+:root[data-keyboard='true'] .bottomnav {visibility:hidden;pointer-events:none}
+:root[data-keyboard='true'] #app {padding-bottom:calc(100px + var(--keyboard-offset,0px))}
+@media (max-width:899px), (pointer:coarse) {
+  html {-webkit-text-size-adjust:100%;text-size-adjust:100%}
+  .field input,.field select,.search input,.sort-control select,.pay-form input,.pay-form select,textarea {font-size:16px}
+  .sort-control select {max-width:125px}
+  .sheet-page {align-items:flex-end}
+  .sheet-panel {padding-inline:clamp(12px,4vw,16px)}
+}
+
+/* Square codes retain a white quiet zone and scale within the viewport. */
+.codebox canvas {display:block;width:auto;max-width:100%;height:auto;margin-inline:auto;image-rendering:pixelated}
+.codebox canvas[hidden],.codebox svg[hidden],#scanPhotoInput[hidden] {display:none!important}

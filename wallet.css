@@ -73,7 +73,7 @@ html { scroll-padding-bottom:calc(100px + var(--app-safe-bottom, env(safe-area-i
   padding-right:var(--app-safe-right, env(safe-area-inset-right));
 }
 .bottomnav {
-  bottom:calc(var(--app-bottom-offset, 0px) + max(10px, var(--app-safe-bottom, env(safe-area-inset-bottom))));
+  bottom:max(10px, var(--app-safe-bottom, env(safe-area-inset-bottom)));
   isolation:isolate;
 }
 .nav-indicator {
@@ -197,8 +197,8 @@ button[aria-busy='true']::after {
 
 .sheet-page {
   position: relative;
-  min-height: calc(var(--app-height, 100dvh) - 84px);
-  padding: 14px 12px calc(96px + env(safe-area-inset-bottom));
+  min-height: max(0px, calc(var(--app-height, 100dvh) - 100px - var(--app-safe-bottom, env(safe-area-inset-bottom))));
+  padding: max(14px, var(--app-safe-top, env(safe-area-inset-top))) 12px 12px;
   display:flex; align-items:flex-end;
 }
 .sheet-backdrop {
@@ -392,7 +392,7 @@ button[aria-busy='true']::after {
 .photo-scan-status:empty { display:none; }
 .photo-scan-status { font-size:13px;color:var(--muted);line-height:1.5; }
 #scanPhotoInput[hidden] {display:none!important;}
-input[type=date] { min-width:0; min-height:44px; }
+input[type=date] { min-width:0; min-height:48px; }
 .share-dialog { width:min(calc(100% - 24px),460px); max-height:calc(100dvh - 24px); margin:auto auto max(12px,env(safe-area-inset-bottom)); border:1px solid var(--line);border-radius:26px; background:var(--card);color:var(--ink);padding:20px;box-shadow:var(--shadow-lg);animation:sheetUp .28s ease; }
 .share-dialog::backdrop { background:#0007;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px); }
 .share-dialog h2 {margin:8px 0;font-size:22px;letter-spacing:-.5px;}
