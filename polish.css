@@ -1,32 +1,41 @@
-/* v0.9.2.1: restrained monochrome glass, desktop layout, interaction polish. */
+/* v0.9.2.3: shared glass, restrained depth and interaction polish. */
 .storage-icon {display:inline-flex;align-items:center;flex-shrink:0}
 .storage-icon svg {width:14px;height:14px}
 .status-line {line-height:1.4;align-items:center}
 .sectionhead>div {min-width:0}
-.add-pill {flex-shrink:0;min-height:44px;border-radius:var(--radius-pill)}
+.add-pill {flex-shrink:0;min-height:44px;padding:0 16px;justify-content:center;border-radius:var(--radius-pill)}
+.add-pill:active {transform:scale(.95)}
 .primary,.secondary {border-radius:var(--radius-pill);transition:transform var(--motion) var(--ease-out),background-color var(--motion) ease,opacity var(--motion) ease}
-.icon-btn {width:44px;height:44px;box-shadow:none;flex-shrink:0}
-.wallet-section,.quick-grid,.pay-card,.profile-card {box-shadow:none;border-radius:var(--radius-panel)}
-.wallet-item {box-shadow:inset 0 1px 0 #fff2; border:1px solid #fff2;transition:transform var(--motion) var(--ease-out),border-color var(--motion) ease}
+.icon-btn {width:44px;height:44px;flex-shrink:0;background:var(--glass-bg);border-color:var(--glass-border);box-shadow:0 2px 10px #0001,inset 0 1px 0 var(--glass-highlight);transition:transform var(--motion) var(--ease-out),background-color var(--motion) ease}
+.icon-btn:active {transform:scale(.92)}
+.wallet-section,.quick-grid,.pay-card,.profile-card {box-shadow:0 1px 2px #0001,0 8px 24px #0000000d;border-radius:var(--radius-panel)}
+:root[data-theme='dark'] :is(.wallet-section,.quick-grid,.pay-card,.profile-card) {box-shadow:0 1px 2px #0003,0 8px 24px #0004}
+.wallet-item,.detailcard {box-shadow:inset 0 1px 0 #fff3,0 8px 20px #0001;border:1px solid #fff2;transition:transform var(--motion) var(--ease-out),border-color var(--motion) ease}
+.wallet-item::before,.detailcard::before {content:"";position:absolute;inset:0;z-index:0;pointer-events:none;background:linear-gradient(158deg,#ffffff21,transparent 44%)}
+.wallet-item > *, .detailcard > * {position:relative;z-index:1}
+.quick-fav {z-index:3;background:#0005;border:1px solid #fff3;box-shadow:0 2px 8px #0002;transition:transform var(--motion) var(--ease-out),background-color var(--motion) ease}
+.quick-fav:active {transform:scale(.9)}
+.quick-fav.is-fav {color:#fff;background:#0007;border-color:#fff5}
 .wallet-badge {backdrop-filter:none;-webkit-backdrop-filter:none}
 .wallet-card-wrap {animation-duration:320ms;animation-timing-function:var(--ease-out)}
-.bottomnav,:root[data-theme='dark'] .bottomnav {background:var(--glass-bg);border-color:var(--glass-border);backdrop-filter:blur(var(--glass-blur)) saturate(125%);-webkit-backdrop-filter:blur(var(--glass-blur)) saturate(125%);box-shadow:0 10px 32px #0002,inset 0 1px 0 #fff2}
+
 @media (hover:hover) and (pointer:fine) {
   .wallet-item:hover {border-color:#fff7}
-  .primary:not(:disabled):hover,.secondary:not(:disabled):hover {opacity:.88}
+  .primary:not(:disabled):hover,.secondary:not(:disabled):hover {opacity:.94;transform:translateY(-1px)}
   .sidebar-item:hover {background:var(--surface)}
 }
-.balance-skeleton {position:relative;isolation:isolate;min-width:76px;color:transparent;overflow:hidden;border-radius:7px}
+.balance-skeleton {position:relative;isolation:isolate;min-width:76px;min-height:18px;color:transparent;overflow:hidden;border-radius:7px}
 .balance-skeleton::after {content:"";position:absolute;inset:0;background:linear-gradient(100deg,var(--skeleton-base) 20%,var(--skeleton-light) 50%,var(--skeleton-base) 80%);background-size:220% 100%;animation:balance-shimmer 1.4s linear infinite}
 @keyframes balance-shimmer {to {background-position:-220% 0}}
 .app-background .balance-skeleton::after {animation-play-state:paused}
 .detail-sidebar {display:none}
 @media (max-width:899px) {
-  .detail-enter>.subpage {animation:detail-slide 250ms var(--ease-out) both}
-  @keyframes detail-slide {from {opacity:0;transform:translateX(20px)} to {opacity:1;transform:translateX(0)}}
+  .detail-enter>.subpage {animation:detail-slide 280ms var(--ease-out) both}
+  @keyframes detail-slide {from {opacity:0;transform:translateX(24px)} to {opacity:1;transform:translateX(0)}}
 }
 @media (min-width:900px) {
   #app,:root[data-telegram='true'] #app {max-width:1120px}
+  .bottomnav {width:min(calc(100% - 40px),560px)}
   #app[data-screen='home'] #screen {display:grid;grid-template-columns:minmax(300px,360px) minmax(0,1fr);gap:20px;align-items:start;padding:24px max(20px,var(--app-safe-right,0px)) 0 max(20px,var(--app-safe-left,0px))}
   #app[data-screen='home'] .hero {border-radius:var(--radius-panel);border:1px solid var(--line);padding:18px}
   #app[data-screen='home'] .wallet-section,:root[data-telegram='true'] #app[data-screen='home'] .wallet-section {margin:0;min-width:0;padding:20px}
@@ -39,7 +48,8 @@
   .sidebar-heading button {width:auto;min-height:36px;padding:0 12px;margin:0;font-size:12px}
   .sidebar-count {font-size:12px;color:var(--muted);margin:9px 0}
   .sidebar-list {max-height:calc(100dvh - 240px);overflow:auto;display:grid;gap:4px;scrollbar-width:thin}
-  .sidebar-item {display:flex;align-items:center;gap:12px;text-align:left;padding:10px;border-radius:14px;min-height:56px;width:100%;min-width:0}
+  .sidebar-item {display:flex;align-items:center;gap:12px;text-align:left;padding:10px;border-radius:14px;min-height:56px;width:100%;min-width:0;transition:background-color var(--motion) ease,box-shadow var(--motion) ease}
+
   .sidebar-item[aria-current='true'] {background:var(--surface);box-shadow:inset 0 0 0 1px var(--line)}
   .sidebar-icon {display:grid;place-items:center;width:36px;height:36px;border-radius:12px;background:var(--surface);flex-shrink:0}
   .sidebar-item>span:last-child {min-width:0;flex:1}
@@ -49,4 +59,15 @@
   .detail-focus .detail-sidebar {display:none}
   #app[data-screen='settings'] .subpage,#app[data-screen='pay'] .subpage,#app[data-screen='form'] .sheet-page {max-width:600px;margin-inline:auto}
 }
-@media(prefers-reduced-motion:reduce) {.balance-skeleton::after,.detail-enter>.subpage {animation:none!important}}
+
+
+/* No per-row backdrop blur: the highlight is composited without sampling the page. */
+.search {background:var(--surface);border-color:var(--line);transition:border-color var(--motion) ease,box-shadow var(--motion) ease}
+.search:focus-within {border-color:var(--muted);box-shadow:0 0 0 3px #8882}
+.primary:active:not(:disabled),.secondary:active:not(:disabled) {transform:scale(.97)}
+.profile-avatar::before,.hero-avatar::before {box-shadow:inset 0 1px 2px #fff5,inset 0 -1px 1px #0002}
+.pay-sheet,.share-dialog {overscroll-behavior:contain}
+
+/* Search and header controls: visual depth without per-control backdrop sampling. */
+.clear-search {background:var(--card);border:1px solid var(--line)}
+.field-label {letter-spacing:.01em}

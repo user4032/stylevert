@@ -4,6 +4,9 @@
 }
 .load-more { width:100%; margin:12px 0 2px; }
 .app-background .hero::before,.app-background .hero-avatar-glow::after,.app-background .hero-brand::before { animation-play-state:paused !important; }
-@media (prefers-reduced-motion:reduce) {
-  .hero::before,.hero-avatar-glow::after { animation:none !important; }
+
+
+/* One reduced-motion policy for every feature and pseudo-element. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation:none !important; transition:none !important; scroll-behavior:auto !important; }
 }
